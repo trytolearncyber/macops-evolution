@@ -1,4 +1,4 @@
-# 🏦 Episode 01: The Server Crisis (Revised)
+# 🏦 Episode 01: The Server Crisis
 
 **📖 Date:** Monday, 15 January, 9:00 AM
 **📍 Location:** Nord Bank Headquarters, Dhaka

@@ -1,0 +1,422 @@
+# ✅ Day 06 - Linux Command Line Basics: Hands-on Labs
+
+---
+
+# LAB: Day06_01_Linux_Navigation
+
+**Task:** Linux Navigation Commands Practice করতে হবে। `pwd`, `ls`, `cd` ব্যবহার করে Directory Explore করতে হবে।
+
+---
+
+# Linux Navigation Commands
+
+## Step 1: SSH Login
+
+```bash
+ssh -i nordbank-test-key.pem ubuntu@<public-ip>
+```
+
+---
+
+## Step 2: Check Current Directory
+
+```bash
+pwd
+```
+
+Output
+
+```text
+/home/ubuntu
+```
+
+---
+
+## Step 3: List Files & Folders
+
+```bash
+ls
+```
+
+Output
+
+```text
+(Shows all files and folders in the current directory)
+```
+
+---
+
+## Step 4: List Files with Details
+
+```bash
+ls -ltr
+```
+
+Output
+
+```text
+Shows file permissions, owner, size, and modified date.
+```
+
+---
+
+## Step 5: Change Directory
+
+```bash
+cd /tmp
+```
+
+---
+
+## Step 6: Verify Current Directory
+
+```bash
+pwd
+```
+
+Output
+
+```text
+/tmp
+```
+
+---
+
+## Step 7: Return to Home Directory
+
+```bash
+cd ~
+```
+
+---
+
+## Step 8: Move to Parent Directory
+
+```bash
+cd ..
+```
+
+---
+
+# Lab Result
+
+- ✅ Navigation Commands Practice Completed
+- ✅ `pwd`, `ls`, `cd` Commands Practiced
+
+---
+
+# LAB: Day06_02_Linux_File_Management
+
+**Task:** Linux File Management Commands Practice করতে হবে। `touch`, `vi`, `cat`, `mkdir`, `rm` ব্যবহার করে File এবং Folder Manage করতে হবে।
+
+---
+
+# Linux File Management Commands
+
+## Step 1: Create a New File
+
+```bash
+touch test-file.txt
+```
+
+Output
+
+```text
+File Created
+```
+
+---
+
+## Step 2: Create a New Directory
+
+```bash
+mkdir nordbank-lab
+```
+
+Output
+
+```text
+Directory Created
+```
+
+---
+
+## Step 3: Verify Creation
+
+```bash
+ls
+```
+
+Output
+
+```text
+test-file.txt
+nordbank-lab
+```
+
+---
+
+## Step 4: Edit File with vi
+
+```bash
+vi config-notes.txt
+```
+
+Inside **vi**
+
+```text
+i        → Insert Mode
+Type: Nord Bank Lab - Day 06
+Esc      → Exit Insert Mode
+:wq      → Save & Exit
+```
+
+---
+
+## Step 5: View File Content
+
+```bash
+cat config-notes.txt
+```
+
+Output
+
+```text
+Nord Bank Lab - Day 06
+```
+
+---
+
+## Step 6: Delete File
+
+```bash
+rm test-file.txt
+```
+
+---
+
+## Step 7: Delete Directory
+
+```bash
+rm -r nordbank-lab
+```
+
+---
+
+# Lab Result
+
+- ✅ File Management Practice Completed
+- ✅ `touch`, `vi`, `cat`, `mkdir`, `rm` Commands Practiced
+
+---
+
+# LAB: Day06_03_Linux_Resource_Monitoring
+
+**Task:** Server Resource Monitoring করতে হবে। `free -h`, `nproc`, `df -h`, `top` ব্যবহার করে System Resource Check করতে হবে।
+
+---
+
+# Linux Resource Monitoring
+
+## Step 1: Check Memory Usage
+
+```bash
+free -h
+```
+
+Example Output
+
+```text
+              total        used        free      shared  buff/cache   available
+Mem:           985Mi       312Mi        98Mi       1.0Mi       574Mi       521Mi
+```
+
+---
+
+## Step 2: Check CPU Cores
+
+```bash
+nproc
+```
+
+Output
+
+```text
+1
+```
+
+---
+
+## Step 3: Check Disk Usage
+
+```bash
+df -h
+```
+
+Example Output
+
+```text
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        29G  8.1G   20G  29% /
+```
+
+---
+
+## Step 4: Real-time Resource Monitoring
+
+```bash
+top
+```
+
+Output
+
+```text
+Live CPU Usage
+Live Memory Usage
+Running Processes
+```
+
+Press **q** to exit.
+
+---
+
+# Lab Result
+
+- ✅ Resource Monitoring Practice Completed
+- ✅ `free -h`, `nproc`, `df -h`, `top` Commands Practiced
+
+---
+
+# LAB: Day06_04_SSH_EC2_Access
+
+**Task:** EC2 Instance-এ SSH Login করতে হবে, Linux Commands Practice করতে হবে এবং Session Exit করতে হবে।
+
+---
+
+# SSH EC2 Access & Commands Practice
+
+## Step 1: Set Key Permission
+
+```bash
+chmod 400 nordbank-test-key.pem
+```
+
+---
+
+## Step 2: Login to EC2
+
+```bash
+ssh -i nordbank-test-key.pem ubuntu@<public-ip>
+```
+
+Output
+
+```text
+ubuntu@ip-xxx:~$
+```
+
+---
+
+## Step 3: Verify Current User
+
+```bash
+whoami
+```
+
+Output
+
+```text
+ubuntu
+```
+
+---
+
+## Step 4: Check Current Directory
+
+```bash
+pwd
+```
+
+Output
+
+```text
+/home/ubuntu
+```
+
+---
+
+## Step 5: Display System Information
+
+```bash
+uname -a
+```
+
+Example Output
+
+```text
+Linux ip-xxx 5.15.0-1022-aws #25-Ubuntu SMP x86_64 GNU/Linux
+```
+
+---
+
+## Step 6: Check Current Date and Time
+
+```bash
+date
+```
+
+Output
+
+```text
+Current system date and time displayed
+```
+
+---
+
+## Step 7: Exit SSH Session
+
+```bash
+exit
+```
+
+Output
+
+```text
+logout
+Connection to <public-ip> closed.
+```
+
+---
+
+# Lab Result
+
+- ✅ SSH Login Successful
+- ✅ Linux Commands Practiced
+- ✅ Session Exited Successfully
+
+---
+
+# ✅ Day 06 - All Labs Summary
+
+| Lab | Status | Result |
+|------|--------|--------|
+| Day06_01_Linux_Navigation | ✅ Completed | `pwd`, `ls`, `cd` Commands Practiced |
+| Day06_02_Linux_File_Management | ✅ Completed | `touch`, `vi`, `cat`, `mkdir`, `rm` Commands Practiced |
+| Day06_03_Linux_Resource_Monitoring | ✅ Completed | `free -h`, `nproc`, `df -h`, `top` Commands Practiced |
+| Day06_04_SSH_EC2_Access | ✅ Completed | SSH Login + Linux Commands + Session Exit |
+
+---
+
+# 🎉 Day 06 Completed Successfully
+
+## Skills Learned
+
+- Linux Directory Navigation
+- Linux File & Directory Management
+- Using the **vi** Editor
+- Monitoring CPU, Memory, and Disk Usage
+- SSH Access to AWS EC2
+- Basic Linux System Information Commands
+- Safe Command Line Operations
+
+**🎉 ALL HANDS-ON LABS COMPLETED SUCCESSFULLY**

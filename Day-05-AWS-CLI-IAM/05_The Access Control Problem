@@ -1,0 +1,423 @@
+# 🏦 Nord Bank - Episode 05: The Access Control Problem
+
+**📖 Date:** Friday, 19 January, 9:00 AM  
+**📍 Location:** Nord Bank Headquarters, Dhaka
+
+---
+
+# 🌅 Scene 1: The Problem
+
+**Security_Shahed** NetMan_Khalid-এর ডেস্কে এলেন। হাতে একটি Audit Report।
+
+> **Security_Shahed:**  
+> Khalid ভাই! Audit Report বলছে আমাদের AWS Access Management ঠিক নেই!
+
+> **NetMan_Khalid:**  
+> কী সমস্যা?
+
+> **Security_Shahed:**  
+> আমরা Root User Access Key ব্যবহার করছি। Root User-এর Unlimited Access!
+
+> **NetMan_Khalid:**  
+> Root User দিয়ে Daily কাজ করা যায় না। এটা Security Risk!
+
+> **Security_Shahed:**  
+> ঠিক! IAM User তৈরি করতে হবে।
+
+---
+
+# 🏢 Scene 2: The Meeting
+
+> **NetMan_Khalid:**  
+> Team! Root User Access Key ব্যবহার বন্ধ করতে হবে। IAM User তৈরি করব।
+
+> **SA_Asraf:**  
+> Root User কী?
+
+> **DevOps_Taj:**  
+> Account Creation-এর সময় তৈরি হওয়া Master Account। এর Unlimited Access থাকে।
+
+> **Compliance_Rassell:**  
+> Banking Sector-এ Accountability দরকার।
+
+> **Audit_Mahfuz:**  
+> IAM User থাকলে Audit অনেক সহজ হয়।
+
+---
+
+# 💡 Scene 3: IAM Explained
+
+> **DevOps_Taj:**  
+> IAM = Identity and Access Management
+
+---
+
+# IAM Main Concepts
+
+| Component | Description |
+|-----------|-------------|
+| **IAM User** | নির্দিষ্ট Person-এর Identity এবং Limited Access |
+| **IAM Group** | একাধিক User-কে একই Permission দেওয়া |
+| **IAM Policy** | কোন User কী করতে পারবে তা নির্ধারণ করে |
+| **Root User** | Master Account, Unlimited Access (Daily Use-এর জন্য নয়) |
+
+---
+
+> **Security_Shahed:**  
+> Root User-এর Access Key ব্যবহার করা সবচেয়ে বড় Security Risk।
+
+---
+
+# Root User vs IAM User
+
+| **Root User** | **IAM User** |
+|---------------|--------------|
+| Unlimited Access | Limited Access |
+| Accountability নেই | Auditable |
+| High Security Risk | More Secure |
+| Daily Use-এর জন্য নয় | Daily Operations-এর জন্য |
+
+---
+
+# 🛠️ Scene 4: IAM User Creation
+
+> **DevOps_Taj:**  
+> প্রথমে IAM User তৈরি করতে হবে।
+
+---
+
+## Steps
+
+1. AWS Console খুলুন
+2. **IAM → Users**
+3. **Create User** নির্বাচন করুন
+4. Username দিন
+
+```text
+nordbank-junior-engineer
+```
+
+5. নিচের Policy Attach করুন
+
+```text
+AmazonEC2ReadOnlyAccess
+```
+
+6. **Create User**
+
+---
+
+> **SA_Asraf:**  
+> ReadOnlyAccess মানে?
+
+> **NetMan_Khalid:**  
+> শুধু Resource দেখতে পারবে। কোনো পরিবর্তন করতে পারবে না। এটাকেই Least Privilege বলে।
+
+---
+
+# 🔑 Scene 5: Access Key & AWS CLI Setup
+
+> **DevOps_Taj:**  
+> এখন IAM User-এর Access Key তৈরি করতে হবে।
+
+---
+
+## Generate Access Key
+
+AWS Console →
+
+**IAM → Users → Security Credentials → Create Access Key**
+
+Copy করুন
+
+- Access Key ID
+- Secret Access Key
+
+> **Security_Shahed:**  
+> Secret Access Key কখনো Share করা যাবে না।
+
+---
+
+## Configure AWS CLI
+
+```bash
+aws configure
+```
+
+Example
+
+```text
+AWS Access Key ID: AKIAxxxxxxxxxxxx
+
+AWS Secret Access Key:
+xxxxxxxxxxxxxxxxxxxxxxxx
+
+Default Region:
+ap-south-1
+
+Default Output Format:
+json
+```
+
+---
+
+# 🗣️ Scene 6: Identity Verification
+
+> **NetMan_Khalid:**  
+> Login কে করেছে সেটা Verify করতে হবে।
+
+Command
+
+```bash
+aws sts get-caller-identity
+```
+
+Example Output
+
+```json
+{
+  "UserId": "AIDAXXXXXXXXXXXXX",
+  "Account": "123456789012",
+  "Arn": "arn:aws:iam::123456789012:user/nordbank-junior-engineer"
+}
+```
+
+> **DevOps_Taj:**  
+> ARN-এ `user/nordbank-junior-engineer` দেখা যাচ্ছে। অর্থাৎ IAM User দিয়ে Authenticate হয়েছে।
+
+> **Audit_Mahfuz:**  
+> এখন Audit Trail ঠিকভাবে Maintain হবে।
+
+---
+
+# 🧪 Scene 7: Permission Test
+
+> **NetMan_Khalid:**  
+> ReadOnly Policy কাজ করছে কিনা Test করি।
+
+---
+
+## List EC2 Instances
+
+```bash
+aws ec2 describe-instances
+```
+
+**Result**
+
+✅ Success
+
+---
+
+## Create EC2 Instance
+
+```bash
+aws ec2 run-instances \
+--image-id ami-xxxx \
+--instance-type t2.micro
+```
+
+**Result**
+
+```text
+AccessDenied
+```
+
+❌ Permission Denied
+
+---
+
+> **Security_Shahed:**  
+> এটাই Least Privilege। যতটুকু প্রয়োজন, ঠিক ততটুকুই Permission।
+
+---
+
+# 📋 Scene 8: SSH Connection
+
+> **SA_Asraf:**  
+> EC2 Instance-এ SSH করতে চাই। কী করতে হবে?
+
+> **DevOps_Taj:**  
+> `.pem` File ব্যবহার করে SSH করতে হবে।
+
+```bash
+ssh -i nordbank-test-key.pem ubuntu@<public-ip>
+```
+
+> **NOC_Jahid:**  
+> Public IP দিয়ে Direct SSH?
+
+> **Security_Shahed:**  
+> Learning Environment-এ Temporary ঠিক আছে। Production-এ VPN অথবা Bastion Host ব্যবহার করতে হবে।
+
+---
+
+# ✅ Scene 9: The Result
+
+# Before vs After
+
+| **Before (Root User)** | **After (IAM User)** |
+|-------------------------|----------------------|
+| Unlimited Access | Limited Access |
+| Security Risk | Improved Security ✅ |
+| Audit কঠিন | Audit সহজ ✅ |
+| Accountability নেই | Accountability আছে ✅ |
+
+---
+
+> **NetMan_Khalid:**  
+> IAM Setup Complete। Root User আর Daily Operations-এ ব্যবহার করা হবে না।
+
+> **Security_Shahed:**  
+> Banking Security Standard এখন Maintain করা হচ্ছে।
+
+---
+
+# 🗣️ Interview Q&A
+
+### Q: IAM কী?
+
+**Answer**
+
+AWS-এর Identity and Access Management Service। কে কী করতে পারবে তা নিয়ন্ত্রণ করে।
+
+---
+
+### Q: Root User vs IAM User?
+
+**Answer**
+
+- Root User = Unlimited Access (Security Risk)
+- IAM User = Limited Access (Secure & Auditable)
+
+---
+
+### Q: Least Privilege কী?
+
+**Answer**
+
+যতটুকু কাজের জন্য প্রয়োজন, ঠিক ততটুকু Permission দেওয়া।
+
+---
+
+### Q: Access Key Leak হলে কী করবেন?
+
+**Answer**
+
+- Access Key Immediately Deactivate করবেন।
+- নতুন Access Key Generate করবেন।
+- Compromised Key Delete করবেন।
+
+---
+
+### Q: Production-এ SSH Access কীভাবে Manage করবেন?
+
+**Answer**
+
+VPN অথবা Bastion Host ব্যবহার করবেন।
+
+---
+
+# 🎯 Self Introduction (MAC Matrix)
+
+1. Hello, আমি **MAC Matrix**।
+2. Infrastructure DevOps Engineer হিসেবে IAM User এবং Least Privilege অনুসরণ করি।
+3. Root User দিয়ে Daily Operations করি না।
+4. AWS CLI Configure করতে পারি।
+5. SSH ব্যবহার করে EC2 Instance Secureভাবে Access করি।
+
+---
+
+# 📌 Five Takeaways
+
+1. IAM = Identity and Access Management
+2. Root User শুধুমাত্র Account Setup-এর জন্য
+3. IAM User = Secure Daily Access
+4. Least Privilege = Minimum Required Permission
+5. Secret Access Key কখনো Share করা যাবে না
+
+---
+
+# 🛠️ Day 05 Tools
+
+| Tool | Purpose |
+|------|---------|
+| AWS Management Console | AWS Resources Management |
+| AWS IAM | User & Permission Management |
+| AWS CLI | Command Line Access |
+| SSH Client | Remote Login |
+| `.pem` File | SSH Authentication |
+
+---
+
+## Required Tools
+
+- AWS Console
+- AWS IAM
+- AWS CLI
+- SSH Client
+
+> No additional software installation required.
+
+---
+
+# 📋 Hands-on Labs - Day 05
+
+## Day05_01_IAM_User_Creation
+
+**Task**
+
+Junior DevOps Engineer-এর জন্য IAM User তৈরি করতে হবে। `AmazonEC2ReadOnlyAccess` Policy Attach করতে হবে এবং Access Key Generate করতে হবে।
+
+**Output**
+
+- IAM User Created
+- Access Key ID Generated
+- Secret Access Key Generated
+
+---
+
+## Day05_02_AWS_CLI_Setup
+
+**Task**
+
+Local Machine-এ AWS CLI Configure করতে হবে এবং IAM User দিয়ে Authenticate করতে হবে।
+
+**Output**
+
+- AWS CLI Configured
+- Identity Verified
+
+---
+
+## Day05_03_IAM_Permission_Test
+
+**Task**
+
+ReadOnly Policy Test করতে হবে।
+
+**Output**
+
+- EC2 List Works ✅
+- EC2 Create Fails (AccessDenied) ❌
+
+---
+
+## Day05_04_SSH_EC2_Access
+
+**Task**
+
+EC2 Instance-এ SSH Login করতে হবে এবং Session Exit করতে হবে।
+
+**Output**
+
+- SSH Connection Successful
+- Session Exited Successfully
+
+---
+
+# 🎉 THE END
+
+**📌 Previous:** Day 04 - AWS EC2
+
+**📌 Next:** Day 06 - Linux Administration Part 1

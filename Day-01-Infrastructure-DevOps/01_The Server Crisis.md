@@ -1,4 +1,4 @@
-# 🏦 Episode 01: The Server Crisis (Revised)
+# 🏦 Episode 01: The Server Crisis
 
 **📖 Date:** Monday, 15 January, 9:00 AM
 **📍 Location:** Nord Bank Headquarters, Dhaka
@@ -12,11 +12,11 @@
 CHARACTERS - EPISODE 01
 ═══════════════════════════════════════════════════════════════
 
-1. NetMan_Khalid       → Infrastructure DevOps Lead (10+ Years)
+1. NetMan_Khalid       → Infrastructure DevOps Lead 
 2. ATM_Shekhor         → ATM Operations Team Lead
 3. NOC_Jahid           → NOC Team Lead
-4. Infra_Babu          → Infrastructure Architect (10 Years)
-5. SA_Asraf            → System Administrator (15 Years)
+4. Infra_Babu          → Infrastructure Architect 
+5. SA_Asraf            → System Administrator 
 6. DevOps_Taj          → DevOps Engineer
 7. Security_Shahed     → Security Specialist (SOC Team)
 8. Compliance_Rassell  → Compliance Lead

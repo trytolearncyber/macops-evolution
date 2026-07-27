@@ -1,506 +1,276 @@
-# 🏦 Episode 01: The Server Crisis
+# 🏦 Episode 01: The Server Crisis (Revised)
 
-**📖 Date:** Monday, 15 January, 9:00 AM  
+**📖 Date:** Monday, 15 January, 9:00 AM
 **📍 Location:** Nord Bank Headquarters, Dhaka
 
 ---
 
-# 👥 Characters Introduced
+# 👥 Characters
 
 ```text
 ═══════════════════════════════════════════════════════════════
 CHARACTERS - EPISODE 01
 ═══════════════════════════════════════════════════════════════
 
-MAIN CHARACTERS
-───────────────────────────────────────────────────────────────
-
-1. NetMan_Khalid
-   → Infrastructure DevOps Lead (10+ Years)
-
-2. ATM_Shekhor
-   → ATM Operations Team Lead
-
-3. NOC_Jahid
-   → NOC Team Lead
-
-4. Infra_Babu
-   → Infrastructure Architect (10 Years)
-
-5. SA_Asraf
-   → System Administrator (15 Years)
-
-6. DevOps_Taj
-   → DevOps Engineer
-
-7. Security_Shahed
-   → Security Specialist (SOC Team)
-
-8. Compliance_Rassell
-   → Compliance Lead
-
-9. Finance_Arif
-   → Finance Team
-
-10. Audit_Mahfuz
-    → Audit Team Lead
+1. NetMan_Khalid       → Infrastructure DevOps Lead (10+ Years)
+2. ATM_Shekhor         → ATM Operations Team Lead
+3. NOC_Jahid           → NOC Team Lead
+4. Infra_Babu          → Infrastructure Architect (10 Years)
+5. SA_Asraf            → System Administrator (15 Years)
+6. DevOps_Taj          → DevOps Engineer
+7. Security_Shahed     → Security Specialist (SOC Team)
+8. Compliance_Rassell  → Compliance Lead
+9. Finance_Arif        → Finance Team
+10. Audit_Mahfuz       → Audit Team Lead
 ```
 
 ---
 
 # 🌅 Scene 1: The Problem
 
-ATM_Shekhor দ্রুত NetMan_Khalid-এর ডেস্কে এলেন।
+ATM_Shekhor দৌড়ে NetMan_Khalid-এর ডেস্কে এলো।
 
-> **ATM_Shekhor:**  
-> "Khalid ভাই! CEO-র ফোন! আগামী সপ্তাহের মধ্যে ৫০টি নতুন ATM বসাতে হবে!"
+> **ATM_Shekhor:**
+> "Khalid ভাই, বড় সমস্যা। CEO ফোন দিয়েছিলেন। ৭ দিনের মধ্যে ৫০টা নতুন ATM বসাতে হবে।"
 
-> **NetMan_Khalid:**  
-> "৫০টি ATM মানে ৫০টি নতুন Server! আমাদের তো Server Provision করতে ১০-১৫ দিন লাগে!"
+> **NetMan_Khalid:**
+> "৫০টা ATM মানে ৫০টা Server লাগবে। কিন্তু আমরা তো ১টা Server বসাতেই ১০-১৫ দিন লাগাই।"
 
-> **NOC_Jahid:**  
-> "Competitor Bank market share নিয়ে যাচ্ছে। CEO বলেছেন, এই Expansion মিস করলে Bonus বন্ধ!"
+> **NOC_Jahid:**
+> "Competitor bank আগে চলে যাচ্ছে। CEO বলেছেন, এইবার miss হলে সবার bonus বন্ধ।"
 
-> **NetMan_Khalid:**  
-> "এটা বড় সমস্যা। দ্রুত সমাধান দরকার।"
-
----
-
-> 💡 **Problem**
-
-একজন মানুষের পক্ষে এই কাজ করা সম্ভব নয়।
-
-পুরো Infrastructure Team-কে একসাথে পরিকল্পনা করতে হবে।
+> **NetMan_Khalid:**
+> "একা এই কাজ হবে না। পুরো টিমকে নিয়ে বসতে হবে, এখনই।"
 
 ---
 
 # 🏢 Scene 2: Emergency Meeting
 
-Conference Room-এ সবাই উপস্থিত।
+সবাই Conference Room-এ এসে বসল।
 
-**Present**
+> **NetMan_Khalid:**
+> "৭ দিনে ৫০টা Server লাগবে। কার কী মত?"
 
-- Infra_Babu
-- SA_Asraf
-- Security_Shahed
-- NOC_Jahid
-- DevOps_Taj
-- Compliance_Rassell
-- Finance_Arif
-- Audit_Mahfuz
+> **Infra_Babu:**
+> "আমাদের Data Center-এ জায়গা প্রায় শেষ। নতুন ৫০টা Server রাখার মতো Space নেই।"
 
----
+> **SA_Asraf:**
+> "আর Manual ভাবে এক-একটা Server বসাতে গেলে তো এমনিতেই ১০-১৫ দিন লাগে। ৭ দিনে সম্ভব না।"
 
-> **NetMan_Khalid**
+> **DevOps_Taj:**
+> "একটা রাস্তা আছে। On-Premise-এর পাশে AWS Cloud ব্যবহার করি। Automation দিয়ে Server বসালে সেটা মিনিটের মধ্যে হয়ে যায়, দিনের মধ্যে না।"
 
-"৭ দিনের মধ্যে ৫০টি Server লাগবে। কী করা যায়?"
-
----
-
-> **Infra_Babu**
-
-"আমাদের On-Premise Data Center ইতিমধ্যে অনেক Server দিয়ে পূর্ণ। নতুন Server যোগ করলে Space শেষ হয়ে যাবে।"
-
----
-
-> **SA_Asraf**
-
-"Manual Process-এ ১০-১৫ দিন লাগে। ৭ দিনে সম্ভব না।"
-
----
-
-> **DevOps_Taj**
-
-"On-Premise-এর পাশাপাশি AWS Cloud ব্যবহার করা যায়।
-
-Infrastructure DevOps এবং Automation ব্যবহার করলে ঘণ্টার মধ্যে Infrastructure তৈরি করা সম্ভব।"
-
----
-
-> **NetMan_Khalid**
-
-"ঠিক বলেছো। আমাদের Hybrid Infrastructure Strategy নিতে হবে।"
+> **NetMan_Khalid:**
+> "তাহলে আমরা দুইটাই ব্যবহার করব — কিছু On-Premise-এ, কিছু Cloud-এ। একে বলে Hybrid Infrastructure।"
 
 ---
 
 ## 💡 Learning Point
 
-Automation-এ সবাই Infrastructure DevOps সম্পর্কে পরিষ্কার ধারণা রাখে না।
+সবাই এখনো "Infrastructure Automation" জিনিসটা ঠিক বোঝেনি।
 
-তাই প্রথমে AQMT Framework বোঝানো হবে।
+তাই Khalid প্রথমে সহজ করে একটা Framework বোঝাল — **AQMT**।
 
 ---
 
-# 💡 Scene 3: The Four Pillars (AQMT)
-
-NetMan_Khalid বোর্ডে লিখলেন—
+# 💡 Scene 3: AQMT — চার কথায়
 
 ```text
-═══════════════════════════════════════════════════════════════
-THE FOUR PILLARS (AQMT)
-═══════════════════════════════════════════════════════════════
-
-🔧 AUTOMATION (A)
-Terraform
-Ansible
-
-✅ QUALITY (Q)
-Security
-PCI-DSS
-
-📊 MONITORING (M)
-Prometheus
-Grafana
-
-🧪 TESTING (T)
-Staging Environment
+🔧 A - Automation   → Terraform, Ansible দিয়ে কাজ automatic হবে
+✅ Q - Quality      → Security ও নিয়ম মেনে কাজ
+📊 M - Monitoring   → সব সময় নজর রাখা (Grafana, CloudWatch)
+🧪 T - Testing      → Live করার আগে Staging-এ টেস্ট
 ```
 
----
+> **Security_Shahed:**
+> "Banking-এর জন্য Security কোথায় fit করবে এখানে?"
 
-> **Security_Shahed**
+> **NetMan_Khalid:**
+> "Quality-র মধ্যেই। Security, Compliance — সব Quality-র অংশ।"
 
-"Banking Sector-এর Security?"
+> **Compliance_Rassell:**
+> "একটা বড় প্রশ্ন আছে। AWS-এর যে Region ব্যবহার করবেন — সেটা কোন দেশে?"
 
----
+> **DevOps_Taj:**
+> "Mumbai, India। ap-south-1।"
 
-> **NetMan_Khalid**
+> **Compliance_Rassell:**
+> "তাহলে সমস্যা। Bangladesh Bank-এর নিয়ম অনুযায়ী Customer বা Transaction Data দেশের বাইরে রাখা যায় না, আগে অনুমতি ছাড়া। সেটা ৭ দিনে পাওয়া যাবে না।"
 
-"Quality Pillar-এর মধ্যেই Security, Compliance এবং Best Practice রয়েছে।"
+> **NetMan_Khalid:**
+> (একটু থেমে) "ঠিক আছে। তাহলে ভাগ করে ফেলি। Customer Data, Transaction — সব On-Premise-এই থাকবে, যেমন আছে তেমনই। AWS ব্যবহার করব শুধু Monitoring, Testing আর নতুন ATM-এর Connectivity check-এর কাজে। Sensitive কিছু Cloud-এ যাবে না।"
 
----
-
-> **Compliance_Rassell**
-
-"Compliance?"
-
----
-
-> **NetMan_Khalid**
-
-"সব Infrastructure Code-এর মাধ্যমে তৈরি হবে।
-
-Audit যেকোনো সময় করা যাবে।"
+> **Compliance_Rassell:**
+> "এইভাবে হলে আমার আপত্তি নেই।"
 
 ---
 
-> **Audit_Mahfuz**
+## 💡 Learning Point
 
-"GitHub-এ Version History থাকলে Audit অনেক সহজ হবে।"
+এখানেই আসল শিক্ষা — Cloud মানেই সব কিছু Cloud-এ তুলে দেওয়া না।
+
+কোনটা Cloud-এ যাবে, কোনটা যাবে না — সেটা ঠিক করাই আসল কাজ।
 
 ---
 
-# ⚡ Scene 4: Infrastructure Tools
-
-DevOps_Taj Automation Tools দেখালেন।
+# ⚡ Scene 4: টুলগুলো কী করে
 
 ```text
-═══════════════════════════════════════════════════════════════
-TOOLS & THEIR WORK
-═══════════════════════════════════════════════════════════════
-
-🔧 Terraform
-→ 50 Servers in 1 Minute
-
-🔧 Ansible
-→ Software Installation
-→ Network Configuration
-
-🔧 Bash
-→ Testing
-→ Connectivity Check
+🔧 Terraform  → একটা Command দিলে অনেকগুলো Server তৈরি করে দেয়
+🔧 Ansible    → Server-এ Software বসায়, Setting ঠিক করে
+🔧 Bash       → ছোট ছোট Script দিয়ে Test করা, Connection check করা
 ```
 
----
+> **SA_Asraf:**
+> "এইগুলো দিয়ে কি সত্যিই এত তাড়াতাড়ি হবে?"
 
-> **SA_Asraf**
-
-"৫০টি Server এক মিনিটে?"
-
----
-
-> **DevOps_Taj**
-
-"Terraform একটি Command থেকেই Infrastructure তৈরি করতে পারে।"
+> **DevOps_Taj:**
+> "আজকে সবার সামনে Test করে দেখাবো।"
 
 ---
 
-# 🏛️ Scene 5: Nord Bank Infrastructure
+# 🏛️ Scene 5: Nord Bank-এর Infrastructure
 
 ```text
-═══════════════════════════════════════════════════════════════
-NORD BANK INFRASTRUCTURE
-═══════════════════════════════════════════════════════════════
+🏢 ON-PREMISE (আগে থেকেই আছে)
+Server: Dell PowerEdge R750, R940
+Storage: Dell EMC Unity, IBM TS4500
+Network: Cisco ASR1000, Catalyst 9500
+Security: FortiGate 3000F, Cisco Firepower
+Core Banking: Temenos T24 (এখানেই থাকবে, Cloud-এ যাবে না)
 
-🏢 ON-PREMISE (Existing)
-
-Data Center
-• Nord Bank Headquarters
-
-Physical Servers
-• Dell PowerEdge R750
-• Dell PowerEdge R940
-
-Storage
-• Dell EMC Unity
-• IBM TS4500
-
-Networking
-• Cisco ASR1000
-• Cisco Catalyst 9500
-
-Security
-• FortiGate 3000F
-• Cisco Firepower
-
-Virtualization
-• VMware ESXi
-
-Core Banking
-• Temenos T24
-
-
-☁️ AWS CLOUD (New)
-
-Region
-• ap-south-1 (Mumbai)
-
-Compute
-• Amazon EC2
-
-Storage
-• Amazon EBS
-• Amazon S3
-
-Networking
-• Amazon VPC
-• Subnet
-• Security Group
-
-Monitoring
-• Amazon CloudWatch
+☁️ AWS CLOUD (নতুন, শুধু non-sensitive কাজের জন্য)
+Region: ap-south-1 (Mumbai)
+Compute: EC2
+Storage: EBS, S3
+Monitoring: CloudWatch
 ```
 
----
-
-> **NetMan_Khalid**
-
-"Core Banking On-Premise-এ থাকবে।
-
-নতুন Workload AWS Cloud-এ যাবে।"
+> **Infra_Babu:**
+> "তাহলে Core Banking On-Premise-এই থাকছে, শুধু নতুন Monitoring আর Test Environment যাবে Cloud-এ। এতে Space সমস্যাও কমল, নিয়মও ভাঙল না।"
 
 ---
 
-> **Infra_Babu**
-
-"Hybrid Infrastructure আমাদের Space Problem সমাধান করবে।"
-
----
-
-# 📋 Scene 6: Seven-Day Plan
+# 📋 Scene 6: ৭ দিনের Plan
 
 ```text
-═══════════════════════════════════════════════════════════════
-7-DAY IMPLEMENTATION PLAN
-═══════════════════════════════════════════════════════════════
-
-Day 1
-Automation Setup
-
-Day 2
-Terraform + Ansible
-
-Day 3
-Staging Environment
-
-Day 4
-Security Testing
-
-Day 5
-Monitoring Setup
-
-Day 6
-Production Deployment
-
-Day 7
-Documentation & Handover
+Day 1  → Automation Tools সেটআপ (Terraform, Ansible)
+Day 2  → Script লিখে টেস্ট করা
+Day 3  → Staging Environment-এ চালিয়ে দেখা
+Day 4  → Security Check
+Day 5  → Monitoring বসানো
+Day 6  → Production-এ আসল Deployment
+Day 7  → Documentation ও হ্যান্ডওভার
 ```
 
+> **Finance_Arif:**
+> "Cloud-এ খরচ কেমন হবে?"
+
+> **DevOps_Taj:**
+> "এখন সব Server সব সময় চালু রাখলে খরচ বেশি হবে। কিন্তু দরকার অনুযায়ী Server বাড়ানো-কমানো গেলে (Auto Scaling), হিসাব করে দেখেছি মাসে খরচ প্রায় ৪০% কম আসবে on-premise-এ নতুন সার্ভার কেনার তুলনায়।"
+
+> **Finance_Arif:**
+> "সেই হিসাবটা লিখিত আকারে চাই।"
+
+> **DevOps_Taj:**
+> "আজকেই পাঠাচ্ছি।"
+
 ---
 
-> **Finance_Arif**
-
-"Cloud Cost কত হবে?"
-
----
-
-> **DevOps_Taj**
-
-"Auto Scaling ব্যবহার করলে প্রায় ৪০% Cost কমানো সম্ভব।"
-
----
-
-# 🔒 Scene 7: Security & Compliance
+# 🔒 Scene 7: Security Check
 
 ```text
-═══════════════════════════════════════════════════════════════
-SECURITY CHECKS
-═══════════════════════════════════════════════════════════════
-
-🏢 ON-PREMISE
-
-✅ Firewall Rules
-✅ VLAN Segmentation
-✅ IBM TS4500 Backup
-
-☁️ AWS
-
-✅ Private Subnet
-✅ Security Group
-✅ IAM Least Privilege
-✅ KMS Encryption
-✅ CloudTrail Audit Logging
+🏢 On-Premise: Firewall Rules, VLAN আলাদা, Backup ঠিকঠাক
+☁️ AWS: Private Subnet, Security Group, IAM-এ শুধু দরকারি Access, Encryption, CloudTrail Log
 ```
 
----
-
-> **Audit_Mahfuz**
-
-"GitHub এবং CloudTrail থাকলে Audit অনেক সহজ হবে।"
+> **Audit_Mahfuz:**
+> "সব কাজ GitHub-এ আর CloudTrail-এ লেখা থাকলে Audit করা সহজ হবে।"
 
 ---
 
-# ✅ Scene 8: The Result
+# ✅ Scene 8: Day 6 — আসল Deployment
 
-**📅 Day 6 — Production Deployment**
+> **DevOps_Taj:**
+> "Terraform চালাচ্ছি... ৫০টা Server তৈরি হচ্ছে।"
 
----
+(কিছুক্ষণ পর)
 
-> **DevOps_Taj**
+> **DevOps_Taj:**
+> "৪৭টা Server ঠিকমতো উঠেছে। ৩টা Fail করেছে — একটা ভুল Setting-এর জন্য, ঠিক করছি।"
 
-"৫০টি AWS Server Ready!
+> **SA_Asraf:**
+> "তাহলে পুরোটা perfect হয়নি প্রথমবারে?"
 
-মাত্র ৫ মিনিট লেগেছে।"
+> **DevOps_Taj:**
+> "না, এটাই স্বাভাবিক। Manual হলে এই ৩টা Server-ও ঠিক করতে আরও ২-৩ দিন লাগত। Script ঠিক করে আবার চালালাম।"
 
----
+(১৫ মিনিট পর)
 
-> **SA_Asraf**
+> **DevOps_Taj:**
+> "৫০টা Server-ই এখন Ready। মোট সময় লেগেছে ঘণ্টাখানেক — Manual হলে যেটা লাগত ১০-১৫ দিন।"
 
-"১০ দিনের কাজ ৫ মিনিটে!"
+> **Infra_Babu:**
+> "Space সমস্যাও নেই, কারণ এগুলো On-Premise-এ বসাইনি।"
 
----
-
-> **Infra_Babu**
-
-"On-Premise-এর Space Problem শেষ।
-
-Cloud-এ নতুন ৫০টি Server যুক্ত হয়েছে।"
-
----
-
-> **ATM_Shekhor**
-
-"ATM Deployment Ready।"
+> **ATM_Shekhor:**
+> "তাহলে ATM Deployment-এর জন্য আমরা রেডি।"
 
 ---
 
-> **Finance_Arif**
-
-"Cloud ব্যবহার করে Cost প্রায় ৪০% কমেছে।"
-
----
-
-## 📊 Before vs After
+## 📊 আগে vs পরে
 
 ```text
-═══════════════════════════════════════════════════════════════
-BEFORE vs AFTER
-═══════════════════════════════════════════════════════════════
+আগে
+• শুধু On-Premise
+• ১টা Server-ই ১০-১৫ দিন
+• ৫০টা Server ৭ দিনে অসম্ভব
 
-BEFORE
-
-• Only On-Premise
-• 10–15 Days
-• 50 Servers Impossible
-
-AFTER
-
-• Hybrid Infrastructure
-• On-Premise + AWS Cloud
-• 5 Minutes
-• 50 Servers Ready ✅
+পরে
+• Hybrid (On-Premise + Cloud, ঠিক ভাগ করে)
+• ৫০টা Server প্রায় ১ ঘণ্টায় (৩টা retry সহ)
+• Customer Data দেশের বাইরে যায়নি
 ```
 
 ---
 
 # 🗣️ Interview Questions
 
-## Q1. Infrastructure DevOps কী?
+**Q1. Infrastructure DevOps কী?**
+Code আর Automation দিয়ে Infrastructure দ্রুত ও নির্ভরযোগ্যভাবে তৈরি ও পরিচালনা করা।
 
-**Answer**
+**Q2. AQMT কী?**
+Automation, Quality, Monitoring, Testing।
 
-Infrastructure-কে Code এবং Automation ব্যবহার করে দ্রুত ও নির্ভরযোগ্যভাবে পরিচালনা করার পদ্ধতি।
-
----
-
-## Q2. AQMT কী?
-
-**Answer**
-
-- Automation
-- Quality
-- Monitoring
-- Testing
+**Q3. সব কিছু কি Cloud-এ তুলে দেওয়া উচিত?**
+না। কোনটা Sensitive (যেমন Customer Data), কোনটা না — সেটা আগে ঠিক করে তারপর ভাগ করতে হয়। এই গল্পে Core Banking On-Premise-এ রয়ে গেছে, Regulatory কারণে।
 
 ---
 
-## Q3. Nord Bank-এর Infrastructure Strategy কী?
-
-**Answer**
-
-Hybrid Infrastructure
-
-- On-Premise → Core Banking
-- AWS Cloud → New Workloads
-
----
-
-# 🎯 Self Introduction (MAC Matrix)
+# 📌 পাঁচটা মূল শিক্ষা
 
 ```text
-1. Hello, I am MAC Matrix.
-2. I am an Infrastructure DevOps Engineer.
-3. I believe in Automation.
-4. I work with Terraform and Ansible.
-5. I manage both On-Premise and AWS Cloud Infrastructure.
-6. I follow AQMT principles.
+1. Automation মানে কাজ দ্রুত হওয়া, ভুল না হওয়া না — 
+   প্রথমবারে ছোটখাটো Fail হতেই পারে, সেটাও Plan-এর অংশ।
+
+2. Cloud ব্যবহারের আগে জানতে হবে — কোন Data কোথায় রাখা যায়, 
+   বিশেষ করে Banking-এ Regulatory Rule থাকে।
+
+3. Hybrid মানে সব কিছু ভাগ করে ব্যবহার করা, 
+   পুরোটা এক জায়গায় না ফেলা।
+
+4. Terraform, Ansible, Bash — এই তিনটা টুল দিয়েই 
+   বেশিরভাগ Automation-এর কাজ শুরু করা যায়।
+
+5. যেকোনো Cost বা Time-এর দাবি (যেমন "৪০% কম") 
+   একটা হিসাবের ভিত্তিতে হওয়া উচিত, শুধু কথায় না।
 ```
 
 ---
 
-# 📌 Five Key Takeaways
+# 🎉 Episode 01 শেষ
 
 ```text
-1. Infrastructure DevOps = Code + Automation
-
-2. Automation reduces deployment time
-   from 10 days to about 5 minutes.
-
-3. AQMT is the foundation of Infrastructure DevOps.
-
-4. Terraform, Ansible and Bash are essential tools.
-
-5. Hybrid Infrastructure combines
-   On-Premise with AWS Cloud.
-```
-
----
-
-# 🎉 End of Episode 01
-
-```text
-──────────────────────────────────────────────────────────────
 📖 Previous : Introduction
 📖 Next     : Episode 02 - Enterprise SDLC
-──────────────────────────────────────────────────────────────
 ```

@@ -1,80 +1,81 @@
-# 🏦 Nord Bank - Episode 04: The Cloud Server
+# 🏦 Nord Bank - Episode 04: AWS EC2
 
-**📖 Date:** Thursday, 18 January, 10:00 AM  
-**📍 Location:** Nord Bank Headquarters, Dhaka
+**📖 তারিখ:** Thursday, 18 January, 10:00 AM
+**📍 স্থান:** Nord Bank Headquarters, Dhaka
 
 ---
 
 # 🌅 Scene 1: The Problem
 
-**Infra_Babu** NetMan_Khalid-এর ডেস্কে এলেন।
+Infra_Babu NetMan_Khalid-এর ডেস্কে এলেন।
 
-> **Infra_Babu:**  
-> Khalid ভাই! On-premise Data Center-এ আর জায়গা নেই! নতুন server রাখার মতো room নেই!
+> **Infra_Babu:**
+> "Khalid ভাই, On-premise Data Center-এ আর জায়গা নেই। নতুন Server রাখার মতো Room নেই।"
 
-> **NetMan_Khalid:**  
-> আমাদের তো অনেক server দরকার!
+> **NetMan_Khalid:**
+> "কিন্তু আমাদের তো আরও Server দরকার।"
 
-> **Infra_Babu:**  
-> হ্যাঁ! কিন্তু Data Center full!
+> **Infra_Babu:**
+> "হ্যাঁ, কিন্তু Data Center Full।"
 
-> **NetMan_Khalid:**  
-> Cloud-এ যেতে হবে।
+> **NetMan_Khalid:**
+> "তাহলে Cloud-এ যেতে হবে।"
 
-> **Infra_Babu:**  
-> Cloud? মানে?
+> **Infra_Babu:**
+> "Cloud? মানে?"
 
-> **NetMan_Khalid:**  
-> AWS। সেখানে Server ভাড়া নেওয়া যায়। Physical Server কেনার দরকার নেই।
+> **NetMan_Khalid:**
+> "AWS। সেখানে Server ভাড়া নেওয়া যায়, কেনার দরকার নেই।"
 
 ---
 
 # 🏢 Scene 2: The Meeting
 
-> **NetMan_Khalid:**  
-> Team! On-premise Data Center full। Cloud-এ যেতে হবে!
+> **NetMan_Khalid:**
+> "Team, On-premise Data Center Full। Cloud-এ যেতে হবে।"
 
-> **Finance_Arif:**  
-> Multi-Cloud কেন না? AWS + Azure + GCP?
+> **Finance_Arif:**
+> "Multi-Cloud কেন না — AWS, Azure, GCP একসাথে?"
 
-> **DevOps_Taj:**  
-> Arif vai! Multi-Cloud জটিল। Single-Cloud (AWS) ভালো!
-
----
-
-# Single-Cloud vs Multi-Cloud
-
-| **Single-Cloud (AWS)** | **Multi-Cloud** |
-|-------------------------|-----------------|
-| Skill সহজ | Skill বেশি লাগে |
-| Cost সহজ | Cost জটিল |
-| Automation সহজ | Automation জটিল |
-| Compliance সহজ | Compliance জটিল |
-
-## Nord Bank Decision
-
-✅ **Single-Cloud (AWS)**
-
----
-
-> **SA_Asraf:**  
-> AWS-তে Server কীভাবে কাজ করে?
-
-> **NetMan_Khalid:**  
-> AWS EC2 হচ্ছে Virtual Machine। Day 03-এর Virtualization-এর বাস্তব রূপ।
-
----
-
-# 💡 Scene 3: What is EC2?
-
-> **DevOps_Taj:**  
-> EC2 = Elastic Compute Cloud। Request করলে AWS Virtual Machine (Instance) তৈরি করে দেয়।
-
----
-
-# AWS EC2 Architecture
+> **DevOps_Taj:**
+> "Arif ভাই, Multi-Cloud জটিল। শুরুতে Single-Cloud (AWS) দিয়ে করাই ভালো।"
 
 ```text
+═══════════════════════════════════════════════════════════════
+SINGLE-CLOUD vs MULTI-CLOUD
+═══════════════════════════════════════════════════════════════
+
+SINGLE-CLOUD (AWS)              MULTI-CLOUD
+├── একটাই Platform শিখলে হয়      ├── প্রতিটা Cloud-এর আলাদা Skill লাগে
+├── Cost হিসাব রাখা সহজ           ├── কোন Cloud-এ কত খরচ, ট্র্যাক করা কঠিন
+├── একটা Tool-চেইনেই Automation  ├── প্রতিটা Cloud-এর জন্য আলাদা Setup
+└── একটাই Compliance Process     └── প্রতিটা Cloud আলাদা Audit করতে হয়
+
+Nord Bank-এর মতো ছোট Team-এর জন্য Single-Cloud দিয়ে শুরু করাটাই
+বাস্তবসম্মত। বড় Enterprise-এ Vendor Lock-in এড়াতে Multi-Cloud
+বেছে নেয়, কিন্তু সেটার জন্য বেশি Team ও বাজেট লাগে।
+
+Nord Bank Decision: ✅ SINGLE-CLOUD (AWS)
+```
+
+> **SA_Asraf:**
+> "AWS-এ Server কীভাবে কাজ করে?"
+
+> **NetMan_Khalid:**
+> "AWS EC2 — এটাও একটা Virtual Machine। Day 03-এ যা Virtualization নিয়ে শিখেছিলাম, তারই বাস্তব রূপ।"
+
+---
+
+# 💡 Scene 3: EC2 কী?
+
+> **DevOps_Taj:**
+> "EC2 মানে Elastic Compute Cloud। Request করলে AWS একটা VM (Instance) বানিয়ে দেয়।"
+
+```text
+═══════════════════════════════════════════════════════════════
+AWS EC2 = VIRTUAL MACHINE
+═══════════════════════════════════════════════════════════════
+
 AWS Data Center
         │
         ▼
@@ -85,320 +86,242 @@ Nitro Hypervisor (KVM-based)
         │
     ┌───┼───┐
     ▼   ▼   ▼
-  EC2  EC2  EC2
-(Virtual Machines)
+  EC2  EC2  EC2  (Virtual Machines)
 ```
 
-> **SA_Asraf:**  
-> On-premise VMware-এর মতো?
+> **SA_Asraf:**
+> "মানে On-premise-এ যেভাবে VMware ব্যবহার করি, ঠিক সেই ধারণা?"
 
-> **NetMan_Khalid:**  
-> Concept একই। শুধু Platform আলাদা।
-
----
-
-# 🛠️ Scene 4: EC2 Creation Methods
-
-> **Infra_Babu:**  
-> EC2 Instance কীভাবে তৈরি করব?
-
-> **DevOps_Taj:**  
-> প্রধান ৩টি Method শিখলেই যথেষ্ট।
+> **NetMan_Khalid:**
+> "একদম। Concept একই — Virtualization। শুধু Platform আলাদা।"
 
 ---
 
-# EC2 Creation Methods
+# 🛠️ Scene 4: EC2 বানানোর পদ্ধতি
 
-| Method | Use Case |
-|---------|----------|
-| Console | শেখার সময় |
-| AWS CLI | Automation ও Scripting |
-| Terraform ⭐ | Infrastructure as Code (Best Practice) |
+> **Infra_Babu:**
+> "EC2 Instance কীভাবে তৈরি করব?"
 
-**Recommended:** Terraform
+> **DevOps_Taj:**
+> "মূলত তিনটা পদ্ধতি এখন শিখলেই যথেষ্ট —"
 
----
+```text
+═══════════════════════════════════════════════════════════════
+EC2 CREATION METHODS
+═══════════════════════════════════════════════════════════════
 
-> **Infra_Babu:**  
-> Terraform কেন?
+✅ Console (UI)  → শেখার সময়, দ্রুত দেখার জন্য
+✅ AWS CLI       → Script দিয়ে করার জন্য
+✅ Terraform ⭐   → বড় আকারে, বারবার একইভাবে বানানোর জন্য (Best)
+```
 
-> **DevOps_Taj:**  
-> Industry Standard, Multi-Cloud Support এবং বিশাল Community।
+> **Infra_Babu:**
+> "Terraform-কে Best বলছো কেন?"
 
----
-
-# 🖥️ Scene 5: First EC2 Instance (Console)
-
-> **SA_Asraf:**  
-> Console দিয়ে কীভাবে Instance তৈরি করি?
-
-> **DevOps_Taj:**  
-> AWS Console-এ গিয়ে **Launch Instance** ক্লিক করতে হবে।
+> **DevOps_Taj:**
+> "কারণ একই Code দিয়ে বারবার একইভাবে Infrastructure বানানো যায়, ভুল কম হয়, আর AWS ছাড়া অন্য Cloud-এও একই Tool ব্যবহার করা যায়।"
 
 ---
 
-## Instance Configuration
+# 🖥️ Scene 5: প্রথম EC2 Instance (Console দিয়ে)
 
-| Setting | Value |
-|---------|-------|
-| Name | nordbank-test-server |
-| Operating System | Ubuntu 22.04 LTS |
-| Instance Type | t2.micro |
-| Key Pair | nordbank-test-key |
+> **SA_Asraf:**
+> "Console দিয়ে কীভাবে Instance বানাবো?"
 
-শেষে **Launch Instance** ক্লিক করুন।
+> **DevOps_Taj:**
+> "Console-এ গিয়ে Launch Instance-এ Click করতে হবে।"
 
----
+**ধাপগুলো:**
 
-> **SA_Asraf:**  
-> মাত্র 10 মিনিটে Server Ready!
+- Name: `nordbank-test-server`
+- OS: Ubuntu 22.04 LTS
+- Instance Type: `t2.micro` (Free Tier)
+- Key Pair: `nordbank-test-key`
+- Launch Instance
 
-> **NetMan_Khalid:**  
-> এটাই Cloud-এর Power।
+DevOps_Taj সবার সামনে Live Demo দেখালেন। প্রায় **5 মিনিটে** Instance Ready হয়ে গেল।
 
----
+> **SA_Asraf:**
+> "মাত্র 5 মিনিটে Server রেডি! On-premise-এ এই কাজ করতে 10-15 দিন লাগত।"
 
-# 🔑 Scene 6: Key Pair Explained
-
-> **Security_Shahed:**  
-> Key Pair কী?
-
-> **NetMan_Khalid:**  
-> SSH Login Credential।
+> **NetMan_Khalid:**
+> "এটাই Cloud-এর আসল সুবিধা।"
 
 ---
 
-# AWS Key Pair
+# 🔑 Scene 6: Key Pair
 
-| Public Key | Private Key |
-|------------|-------------|
-| AWS-এ সংরক্ষিত থাকে | `.pem` File হিসেবে Download করা হয় |
+> **Security_Shahed:**
+> "Key Pair জিনিসটা কী?"
 
-## Important
+> **NetMan_Khalid:**
+> "SSH দিয়ে Login করার Credential।"
 
-- `.pem` File কখনো Git Repository-তে Push করবেন না।
-- Secure Folder-এ সংরক্ষণ করুন।
-- হারিয়ে গেলে Instance-এ Login করা যাবে না।
+```text
+═══════════════════════════════════════════════════════════════
+KEY PAIR
+═══════════════════════════════════════════════════════════════
 
----
+Public Key   → AWS-এর কাছে থাকে
+Private Key  → .pem ফাইল, আপনার কাছে থাকে
 
-> **Security_Shahed:**  
-> Banking Sector-এ Key Management খুব গুরুত্বপূর্ণ।
+⚠️ গুরুত্বপূর্ণ:
+├── .pem ফাইল কখনো Git-এ Push করা যাবে না
+├── আলাদা Secure Folder-এ রাখতে হবে
+└── হারালে সেই Instance-এ আর Login করা যাবে না
+```
 
----
+> **Security_Shahed:**
+> "Banking-এ Key Management অনেক গুরুত্বপূর্ণ বিষয়।"
 
-# 📋 Scene 7: AWS Free Tier
-
-> **Finance_Arif:**  
-> এই Instance-এর Cost কত?
-
-> **DevOps_Taj:**  
-> Learning-এর জন্য Free Tier।
-
----
-
-# AWS Free Tier
-
-| Item | Value |
-|------|-------|
-| Instance | t2.micro |
-| CPU | 1 vCPU |
-| RAM | 1 GB |
-| Storage | 30 GB EBS |
-| Duration | 12 Months Free |
-
-### Best For
-
-- Learning
-- Testing
-- Development
+> **NetMan_Khalid:**
+> ".pem ফাইল যেন কারো হাতে না যায়, সেটা নিশ্চিত করতে হবে।"
 
 ---
 
-> **Finance_Arif:**  
-> Production-এও কি t2.micro?
+# 📋 Scene 7: Free Tier
 
-> **NetMan_Khalid:**  
-> না। Production-এর জন্য m5.large বা তার চেয়ে বড় Instance।
+> **Finance_Arif:**
+> "এই Instance-এর খরচ কত?"
 
----
+> **DevOps_Taj:**
+> "এই নির্দিষ্ট Type-টা Free Tier-এর মধ্যে পড়ে।"
 
-# ⚡ Scene 8: Public IP & Connectivity
+```text
+═══════════════════════════════════════════════════════════════
+AWS FREE TIER
+═══════════════════════════════════════════════════════════════
 
-> **NOC_Jahid:**  
-> Instance তৈরি হলে Access কীভাবে করব?
+Instance : t2.micro
+CPU      : 1 vCPU
+RAM      : 1GB
+Storage  : 30GB EBS
 
-> **DevOps_Taj:**  
-> Public IP দিয়ে SSH করব।
+🆓 নতুন AWS Account-এর জন্য প্রথম 12 মাস ফ্রি (একটা নির্দিষ্ট Limit পর্যন্ত)
 
-> **NOC_Jahid:**  
-> এটা কি Security Risk?
+উপযুক্ত: শেখা, Testing, ছোট Development কাজ
+```
 
-> **NetMan_Khalid:**  
-> Security Group দিয়ে Control করা হয়। Day 12-এ বিস্তারিত।
+> **Finance_Arif:**
+> "Production-এও কি একই Instance ব্যবহার হবে?"
 
----
-
-# ✅ Scene 9: The Result
-
-# On-Premise vs AWS EC2
-
-| **On-Premise** | **AWS EC2** |
-|----------------|-------------|
-| 10–15 Days | 5 Minutes |
-| Physical Hardware | No Hardware |
-| Manual Configuration | Automated Configuration |
-| High Cost | Pay-as-you-Go |
+> **NetMan_Khalid:**
+> "না। Production-এ `m5.large` বা তার চেয়ে বড় Instance লাগবে, এবং সেটা Free না — সেই খরচ আলাদাভাবে হিসাব করতে হবে।"
 
 ---
 
-> **SA_Asraf:**  
-> 5 মিনিটে Server! বিশ্বাসই হচ্ছে না!
+# ⚡ Scene 8: Public IP ও Connectivity
+
+> **NOC_Jahid:**
+> "Instance তৈরি হলে সেটাতে কীভাবে ঢুকব?"
+
+> **DevOps_Taj:**
+> "Public IP দিয়ে SSH করা যাবে।"
+
+> **NOC_Jahid:**
+> "Public IP দিয়ে সরাসরি Access — এটা কি Security-র দিক থেকে ঝুঁকিপূর্ণ না?"
+
+> **NetMan_Khalid:**
+> "ভালো প্রশ্ন। এটা Security Group দিয়ে নিয়ন্ত্রণ করা হয় — কে, কোথা থেকে, কোন Port দিয়ে ঢুকতে পারবে। এই বিষয়টা বিস্তারিতভাবে আমরা পরে, Security নিয়ে আলাদা Episode-এ (Day 12) দেখব।"
+
+---
+
+# ✅ Scene 9: ফলাফল
+
+```text
+═══════════════════════════════════════════════════════════════
+ON-PREMISE vs AWS EC2
+═══════════════════════════════════════════════════════════════
+
+ON-PREMISE                    AWS EC2
+├── 10-15 দিন লাগে             ├── প্রায় 5 মিনিট লাগে
+├── নিজে Hardware কেনা লাগে     ├── Hardware কেনার দরকার নেই
+├── Manual Configuration       ├── অনেকটা Automated
+└── আগে থেকেই বড় খরচ (Upfront) └── ব্যবহার অনুযায়ী খরচ (Pay-per-use)
+```
+
+> **SA_Asraf:**
+> "5 মিনিটে Server — এখনো বিশ্বাস হচ্ছে না!"
+
+> **Finance_Arif:**
+> "Pay-per-use মডেলে খরচ কম হবে, তবে ঠিক কতটা কমবে সেটা Production Instance Size আর ব্যবহারের ধরন অনুযায়ী হিসাব করে বলা যাবে — এখনই একটা Fix সংখ্যা বলা ঠিক হবে না।"
 
 ---
 
 # 🗣️ Interview Q&A
 
-### Q: AWS EC2 কী?
+**Q1. AWS EC2 কী?**
+Virtual Machine Service। Day 03-এ শেখা Virtualization-এর বাস্তব রূপ।
 
-**Answer:**
+**Q2. EC2 বানানোর পদ্ধতি কী কী?**
+Console, CLI, Terraform — শুরুতে এই তিনটা জানলেই যথেষ্ট।
 
-Virtual Machine Service। Day 03-এর Virtualization-এর বাস্তব রূপ।
+**Q3. Nord Bank Single-Cloud কেন বেছে নিল?**
+ছোট Team-এর জন্য Skill, Cost ট্র্যাকিং, আর Compliance সহজ রাখতে। বড় Enterপ্রাইজ Vendor Lock-in এড়াতে Multi-Cloud নেয়, কিন্তু তাতে বেশি Team ও বাজেট লাগে।
 
----
+**Q4. Key Pair কী?**
+SSH Login Credential। Private Key (.pem ফাইল) সবসময় Secure রাখতে হয়, Git-এ কখনো Push করা যাবে না।
 
-### Q: EC2 Creation Methods কী?
-
-**Answer:**
-
-- Console
-- AWS CLI
-- Terraform
-
----
-
-### Q: Single-Cloud কেন?
-
-**Answer:**
-
-- Skill সহজ
-- Cost সহজ
-- Automation সহজ
-- Compliance সহজ
-
----
-
-### Q: Key Pair কী?
-
-**Answer:**
-
-SSH Login Credential। `.pem` File নিরাপদে রাখতে হবে।
-
----
-
-### Q: Production-এ Console দিয়ে EC2 তৈরি করবেন?
-
-**Answer:**
-
-না।
-
-Terraform অথবা AWS CLI ব্যবহার করা হবে।
+**Q5. Production-এ কি Console দিয়ে EC2 বানানো হবে?**
+না। Terraform বা CLI ব্যবহার করা হবে, যাতে কাজ পুনরাবৃত্তিযোগ্য (Repeatable) হয়।
 
 ---
 
 # 🎯 Self Introduction (MAC Matrix)
 
-1. Hello, আমি **MAC Matrix**।
-2. Infrastructure DevOps Engineer হিসেবে On-Premise এবং AWS Cloud নিয়ে কাজ করি।
-3. EC2 Instance তৈরি করতে পারি Console, CLI এবং Terraform দিয়ে।
-4. Single-Cloud (AWS) Strategy Follow করি।
-5. Key Pair এবং Security Group নিরাপদভাবে পরিচালনা করি।
+```text
+1. হ্যালো, আমি MAC Matrix, Infrastructure DevOps Engineer।
+2. On-premise থেকে AWS Cloud-এ কাজ করছি (Hybrid — On-premise + Cloud)।
+3. EC2 Instance তৈরি করি — Console, CLI, Terraform দিয়ে।
+4. Nord Bank-এর Single-Cloud (AWS) Strategy অনুসরণ করি।
+5. Key Pair, Security Group — সব Secure রাখার দায়িত্বও বুঝি।
+```
 
 ---
 
-# 📌 Five Takeaways
+# 📌 5 Takeaways
 
-1. EC2 = Virtual Machine
-2. Free Tier = t2.micro
-3. Key Pair = SSH Login Credential
-4. EC2 Creation Methods = Console, CLI, Terraform
-5. Nord Bank Strategy = Single-Cloud (AWS)
+```text
+1. EC2 = Virtual Machine, AWS-এর নিজস্ব Hypervisor-এ চলে।
 
----
+2. Free Tier (t2.micro) শেখা আর Testing-এর জন্য, Production-এর
+   জন্য না।
 
-# 🛠️ Day 04 Tools
+3. Key Pair-এর Private Key (.pem) হারালে সেই Instance-এ আর
+   Login করা যাবে না — তাই Secure রাখা জরুরি।
 
-| Tool | Purpose |
-|------|---------|
-| AWS Management Console | EC2 Management |
-| AWS EC2 | Virtual Machine Service |
-| SSH Client (Terminal / PuTTY / MobaXterm) | Remote Login |
-| `.pem` File | SSH Authentication |
+4. EC2 বানানোর পদ্ধতি: Console, CLI, Terraform — শুরুতে এই তিনটা।
 
----
-
-## Required
-
-- AWS Console
-- SSH Client
-
-> No additional software installation required.
+5. Pay-per-use মডেল খরচ কমাতে সাহায্য করে, কিন্তু ঠিক কত কমবে
+   সেটা Instance Size আর ব্যবহারের ধরনের ওপর নির্ভর করে —
+   আগে থেকে একটা সংখ্যা ধরে না নিয়ে হিসাব করে দেখাই ভালো।
+```
 
 ---
 
-# 📋 Day 04 Labs
+# 🖥️ Hands-On Labs - Day 04
 
-## Day04_01_AWS_EC2_Concept
+```text
+═══════════════════════════════════════════════════════════════
+HANDS-ON LABS - DAY 04
+═══════════════════════════════════════════════════════════════
 
-**Task**
+LAB 01: Free_Tier_EC2_Creation
+কাজ    → Nord Bank Testing Team-এর জন্য একটা Free Tier EC2
+          Instance (t2.micro) তৈরি করা
+Output → EC2 Instance তৈরি হয়ে চলছে
 
-AWS EC2 Concept এবং Single-Cloud vs Multi-Cloud বুঝতে হবে।
-
-**Output**
-
-EC2 Concept Summary
-
----
-
-## Day04_02_EC2_Creation_Methods
-
-**Task**
-
-EC2 Instance তৈরির Method গুলো বুঝতে হবে।
-
-**Output**
-
-EC2 Creation Methods List
+LAB 02: Key_Pair_Management
+কাজ    → EC2 Instance-এর জন্য একটা Key Pair তৈরি করা, এবং
+          .pem ফাইল Secure একটা জায়গায় রাখা
+Output → Key Pair তৈরি + SSH দিয়ে সফলভাবে Login
+```
 
 ---
 
-## Day04_03_Free_Tier_EC2_Creation
+# 🎉 THE END 🎉
 
-**Task**
-
-Nord Bank Testing Team-এর জন্য একটি Free Tier EC2 Instance তৈরি করতে হবে।
-
-**Output**
-
-EC2 Instance Created (t2.micro)
-
----
-
-## Day04_04_Key_Pair_Management
-
-**Task**
-
-EC2-এর জন্য Key Pair তৈরি করতে হবে এবং `.pem` File নিরাপদে সংরক্ষণ করতে হবে।
-
-**Output**
-
-- Key Pair Created
-- SSH Login Successful
-
----
-
-# 🎉 THE END
-
-**📌 Previous:** Day 03 - Virtualization Fundamentals
-
-**📌 Next:** Day 05 - AWS CLI & IAM
+```text
+📌 PREVIOUS: 03_Episode_Virtualization_Fundamentals
+📌 NEXT: 05_Episode_AWS_CLI_IAM
+```

@@ -1,66 +1,70 @@
-# LAB: Day04_03_Free_Tier_EC2_Creation
-
-**Task:** Nord Bank Testing Team-এর জন্য Free Tier EC2 Instance তৈরি করতে হবে।
+# ✅ Day 04 - Hands-On Labs Solved
 
 ---
 
-# Free Tier EC2 Instance Creation
+# LAB 01: Day04_01_Free_Tier_EC2_Creation
 
-## Step 1: Open AWS Console
-
-- Login to **AWS Management Console**
-- Navigate to **EC2 Dashboard**
+**Task:** Create a Free Tier EC2 Instance for the Nord Bank Testing Team.
 
 ---
 
-## Step 2: Launch Instance
+## ✅ Solution
 
+### Free Tier EC2 Instance Creation
+
+### Step 1
+Open **AWS Console** → **EC2 Dashboard**
+
+### Step 2
 Click **Launch Instance**
 
----
-
-## Step 3: Configure Instance
-
-| Setting | Value |
-|---------|-------|
-| Instance Name | `nordbank-test-server` |
-| AMI | Ubuntu Server 22.04 LTS |
-| Instance Type | t2.micro (Free Tier Eligible) |
-| Key Pair | Create `nordbank-test-key` |
-| Network Settings | Default |
-
----
-
-## Step 4: Launch Instance
-
-Click **Launch Instance**.
-
----
-
-## Step 5: Verify Instance Status
-
-Go to **EC2 → Instances**
-
-Verify:
-
-- Instance State = **Running** ✅
-- Status Check = **2/2 Checks Passed**
-
----
-
-## Step 6: Note the Public IP
-
-Copy the assigned **Public IPv4 Address** for SSH access.
-
-Example:
+### Step 3
+Set the instance name:
 
 ```text
-13.127.xxx.xxx
+nordbank-test-server
 ```
+
+### Step 4
+Select the AMI:
+
+```text
+Ubuntu Server 22.04 LTS
+```
+
+### Step 5
+Choose the instance type:
+
+```text
+t2.micro (AWS Free Tier Eligible)
+```
+
+### Step 6
+Create a new Key Pair:
+
+```text
+Name: nordbank-test-key
+```
+
+### Step 7
+Keep the default network settings.
+
+### Step 8
+Click **Launch Instance**.
+
+### Step 9
+Wait until the instance status becomes:
+
+```text
+Running
+```
+
+### Step 10
+Note the assigned Public IP address.
 
 ---
 
-# Instance Summary
+## Result
 
 | Item | Value |
 |------|-------|
@@ -71,65 +75,97 @@ Example:
 | Storage | 30 GB EBS |
 | Key Pair | nordbank-test-key |
 | Public IP | 13.127.xxx.xxx |
-| Status | Running ✅ |
+| Status | ✅ Running |
 
 ---
 
-# Lab Result
+## Commands to Verify
+
+### Check Current User
+
+```bash
+whoami
+```
+
+Output
+
+```text
+ubuntu
+```
+
+### Check Kernel Information
+
+```bash
+uname -a
+```
+
+Output
+
+```text
+Linux ip-xxx 5.15.0-1022-aws #25-Ubuntu SMP
+```
+
+---
+
+## Final Result
 
 - ✅ EC2 Instance Created
-- ✅ Ubuntu 22.04 Installed
-- ✅ Free Tier (t2.micro)
-- ✅ Instance Running
+- ✅ Instance Name: `nordbank-test-server`
+- ✅ Instance Type: `t2.micro`
+- ✅ Status: Running
 - ✅ Public IP Assigned
 
 ---
----
----
----
 
-# LAB: Day04_04_Key_Pair_Management
+# LAB 02: Day04_02_Key_Pair_Management
 
-**Task:** EC2 Instance-এর জন্য Key Pair তৈরি করতে হবে এবং `.pem` File নিরাপদে সংরক্ষণ করতে হবে।
+**Task:** Create an EC2 Key Pair and securely manage the `.pem` file.
 
 ---
 
-# Key Pair Management
+## ✅ Solution
 
-## Step 1: Create Key Pair
+### Step 1: Create Key Pair
 
-Navigate to:
+AWS Console
 
-**AWS Console → EC2 → Key Pairs → Create Key Pair**
+```text
+EC2
+ └── Key Pairs
+      └── Create Key Pair
+```
 
-Configuration:
+Configuration
 
 | Setting | Value |
 |---------|-------|
 | Name | nordbank-test-key |
-| Key Type | RSA |
-| Private Key Format | `.pem` |
-| Download | Save Securely |
+| Type | RSA |
+| Format | .pem |
+
+Download the `.pem` file and store it securely.
 
 ---
 
-## Step 2: Set File Permission (Linux/macOS)
+### Step 2: Set File Permission
 
 ```bash
 chmod 400 nordbank-test-key.pem
 ```
 
-This command makes the private key readable only by the owner.
+**Why?**
+
+To secure the private key so that SSH accepts it.
 
 ---
 
-## Step 3: Connect Using SSH
+### Step 3: Connect Using SSH
 
 ```bash
 ssh -i nordbank-test-key.pem ubuntu@<public-ip>
 ```
 
-### Example
+Example
 
 ```bash
 ssh -i nordbank-test-key.pem ubuntu@13.127.xxx.xxx
@@ -137,21 +173,47 @@ ssh -i nordbank-test-key.pem ubuntu@13.127.xxx.xxx
 
 ---
 
-## Step 4: Verify Login
+### Step 4: Verify Login
+
+Check the current user.
 
 ```bash
-ubuntu@ip-xxx:~$ whoami
-ubuntu
+whoami
+```
 
-ubuntu@ip-xxx:~$ pwd
+Output
+
+```text
+ubuntu
+```
+
+Check the current directory.
+
+```bash
+pwd
+```
+
+Output
+
+```text
 /home/ubuntu
 ```
 
-Successful output confirms that SSH login is working.
+List files.
+
+```bash
+ls
+```
+
+Output
+
+```text
+(Displays available files)
+```
 
 ---
 
-## Step 5: Exit the Session
+### Step 5: Exit SSH Session
 
 ```bash
 exit
@@ -159,20 +221,42 @@ exit
 
 ---
 
-# Security Best Practices
+## Result
 
-- Keep the `.pem` file in a secure location.
-- Never upload the `.pem` file to GitHub or any public repository.
-- Never share the private key with others.
-- Create a backup in an encrypted location.
-- If the key is lost, SSH access to the instance may no longer be possible without additional recovery steps.
+- ✅ Key Pair Created: `nordbank-test-key`
+- ✅ `.pem` File Downloaded
+- ✅ Permission Set to `400`
+- ✅ SSH Login Successful
+- ✅ Session Closed Successfully
 
 ---
 
-# Lab Result
+## Security Tips
 
-- ✅ Key Pair Created (`nordbank-test-key`)
-- ✅ `.pem` File Downloaded
-- ✅ File Permission Configured
-- ✅ SSH Login Successful
-- ✅ Session Exited Successfully
+- Never upload the `.pem` file to GitHub.
+- Store the private key in a secure location.
+- If the `.pem` file is lost, direct SSH access to the instance is no longer possible.
+
+---
+
+# ✅ Day 04 - All Labs Summary
+
+| Lab | Status |
+|------|--------|
+| Day04_01_Free_Tier_EC2_Creation | ✅ Completed |
+| Day04_02_Key_Pair_Management | ✅ Completed |
+
+---
+
+## 🎉 Day 04 Completed Successfully
+
+### Completed Labs
+
+- ✅ Created an AWS Free Tier EC2 Instance
+- ✅ Created and Managed an EC2 Key Pair
+- ✅ Connected to the EC2 Instance Using SSH
+- ✅ Verified Instance Status and Login
+- ✅ Learned Basic EC2 Security Best Practices
+
+---
+**Status:** ✅ Day 04 Successfully Completed
